@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 50" width="44" height="50">
+  <!-- Favicon. Fixed navy rather than currentColor: a favicon is composited by
+       the browser onto its own tab chrome, which is not a surface this app
+       controls or can query. -->
+  <g fill="none" stroke="#1b2a4a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11 22 4.4 40 11v14.6c0 9.4-7.4 16.6-18 19.8C11.4 42.2 4 35 4 25.6Z"/>
+    <path d="M5 11 22 4.9 39 11v2.6L22 17.4 5 13.6Z" fill="#1b2a4a" stroke-width="1.4"/>
+    <path d="M24.4 23.4A8.6 8.6 0 1 0 29.6 34.4" stroke-width="3"/>
+    <path d="M16.3 31.8 20.6 36.1 32.5 22.8" stroke-width="3"/>
+  </g>
+</svg>

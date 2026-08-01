@@ -1,0 +1,27 @@
+{
+  "name": "@aafno-praman/contracts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CredentialRegistry \u2014 on-chain anchor registry for Aafno Praman academic and employment records",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "node": "hardhat node --hostname 0.0.0.0",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "clean": "hardhat clean"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.8",
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.12",
+    "chai": "^4.5.0",
+    "ethers": "^6.13.4",
+    "hardhat": "^2.22.17",
+    "solidity-coverage": "^0.8.14"
+  },
+  "engines": {
+    "node": ">=18.18"
+  }
+}

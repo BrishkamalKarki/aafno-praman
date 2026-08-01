@@ -1,0 +1,49 @@
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["test_*.py"]
+testpaths = ["tests"]
+# --strict-markers turns a typo'd marker into an error rather than a silently
+# unfiltered test. -ra surfaces skips and xfails, which otherwise hide rot.
+addopts = "-ra --strict-markers --strict-config"
+markers = [
+    "chain: requires a running Hardhat node (deselect with '-m \"not chain\"')",
+]
+filterwarnings = ["error::DeprecationWarning:apps.*"]
+
+[tool.coverage.run]
+source = ["apps"]
+omit = ["*/migrations/*", "*/tests/*", "*/management/commands/seed_demo.py"]
+
+[tool.coverage.report]
+exclude_lines = ["pragma: no cover", "raise NotImplementedError", "if TYPE_CHECKING:"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+exclude = ["migrations", ".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "DJ", "S", "RUF"]
+ignore = [
+    # assert is the point of a test suite.
+    "S101",
+    # Rendered by DRF's exception handler; raising bare is the framework idiom.
+    "B904",
+    # Wants ClassVar on every mutable class attribute. Django's entire
+    # declarative surface — Meta.constraints, Meta.indexes, admin.list_display,
+    # serializer Meta.fields, DRF permission_classes — is mutable class
+    # attributes, so this fires ~50 times on correct, idiomatic code and would
+    # train the team to ignore ruff output.
+    "RUF012",
+    # Wants every exception name to end in "Error". This codebase names DRF
+    # domain exceptions for the condition they represent (IssuerNotApproved,
+    # QuotaExceeded, ShareLinkExpired) because the name becomes the API's
+    # machine-readable error code. Renaming them would change the public
+    # contract to satisfy a naming rule.
+    "N818",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests deliberately use hard-coded secrets and non-cryptographic randomness.
+"tests/**" = ["S105", "S106", "S311"]
+"config/settings/*" = ["F403", "F405"]
