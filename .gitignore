@@ -3,6 +3,8 @@
 .env.*.local
 *.env
 
+readme.md
+
 node_modules/
 .next/
 out/
